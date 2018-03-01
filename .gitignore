@@ -1,0 +1,7 @@
+!.gitignore
+
+/vendor/
+
+\.idea
+tests\/public\/*
+composer\.lock

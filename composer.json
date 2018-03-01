@@ -1,0 +1,22 @@
+{
+    "name": "jorjsmile/as2php7",
+    "description": "You can find original package here http://as2secure.com/. It's just a fresh view on it",
+    "type": "library",
+    "license": "GNU",
+    "authors": [
+        {
+            "name": "George",
+            "email": "jorjsmile@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Jorjsmile\\AS2\\": "src/lib"
+        }
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "pear/mail_mime-decode": "1.5.5.2",
+        "mmucklo/email-parse": "^2.0"
+    }
+}
