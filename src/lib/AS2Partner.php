@@ -157,6 +157,9 @@ class AS2Partner {
         
         $partner_id = trim($partner_id, '"');
 
+        if(empty($config) && !empty( ($as2conf = AS2Configs::instance()->getConfig($partner_id)) ))
+            $config = $as2conf;
+
         if(!isset(self::$stack[$partner_id]) && empty($config))
             throw new \Exception("Config strongly required");
 

@@ -33,6 +33,10 @@ require_once "../../vendor/autoload.php";
 
 \Jorjsmile\AS2\AS2Log::$dir = __DIR__."/logs/";
 \Jorjsmile\AS2\AS2Server::$messageDir = __DIR__."/messages/";
+$resources = __DIR__."/../resources";
+\Jorjsmile\AS2\AS2Configs::instance()->setConfigs(
+    include $resources."/configs.php"
+);
 
 try {
     if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST')

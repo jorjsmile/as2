@@ -26,7 +26,7 @@ class Part {
     /**
      * The character(s) used internally for EOLs.
      */
-    const Part_EOL = "\n";
+    const PART_EOL = "\n";
 
     /**
      * The character string designated by RFCs 822/2045 to designate EOLs in MIME
@@ -164,7 +164,7 @@ class Part {
      *
      * @var string
      */
-    protected $_eol = self::Part_EOL;
+    protected $_eol = self::PART_EOL;
 
     /**
      * Internal class flags.

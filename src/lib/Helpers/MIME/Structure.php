@@ -36,8 +36,11 @@ class Structure {
      */
     public static function &parse($body)
     {
+
         $msgOb = new Message();
         $msgOb->addPart(Structure::_parse($body));
+        print_r($msgOb);
+        exit;
         $msgOb->buildMessage();
 
         $ptr = array(&$msgOb);
@@ -82,6 +85,8 @@ class Structure {
         } else {
             $Part->setMIMEId($ref);
         }
+        print_r($body);
+            exit;
 
         /* Deal with multipart data. */
         if (isset($body->parts)) {
@@ -307,13 +312,16 @@ class Structure {
             'decode_headers' => false
         );
 
-        $mimeDecode = new \Mail_mimeDecode($text, Part_EOL);
+        $mimeDecode = new \Mail_mimeDecode($text, Part::PART_EOL);
         if (!($structure = $mimeDecode->decode($decode_args))) {
             $message = false;
         } else {
             /* Put the object into imap_parsestructure() form. */
             Structure::_convertMimeDecodeData($structure);
+
             $message = Structure::parse($structure);
+            print_r($message);
+            exit;
         }
 
         return $message;

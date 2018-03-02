@@ -34,16 +34,21 @@ require_once "../../vendor/autoload.php";
 \Jorjsmile\AS2\AS2Log::$dir = __DIR__."/logs/";
 \Jorjsmile\AS2\AS2Server::$messageDir = __DIR__."/messages/";
 
-
 $resources = __DIR__."/../resources";
-$params = array('partner_from'  => [
+Jorjsmile\AS2\AS2Configs::instance()->setConfigs(
+    include $resources."/configs.php"
+);
+
+$params = array('partner_from'  => //[
                             'mycompanyAS2',
-                            include($resources."/mycompanyAS2.php")
-                ],
-                'partner_to'    => [
+//                            include($resources."/mycompanyAS2.php")
+//                ],
+                'partner_to'
+                =>
+//                    [
                     'mendelsontestAS2',
-                    include($resources."/mendelsontestAS2.php")
-                ]
+//                    include($resources."/mendelsontestAS2.php")
+//                ]
 );
 
 $tmp_file = \Jorjsmile\AS2\AS2Adapter::getTempFilename();

@@ -76,7 +76,6 @@ class AS2Request extends AS2Abstract {
                 $input = AS2Adapter::getTempFilename();
                 $mime_part = Structure::parseTextMIMEMessage($content);
                 file_put_contents($input, $mime_part->toString(true));
-
                 // get input file and returns decrypted file
                 // throw an exception on error
                 $output = $this->adapter->decrypt($input);
@@ -98,7 +97,7 @@ class AS2Request extends AS2Abstract {
         $content .= file_get_contents($this->getPath());
         $input = AS2Adapter::getTempFilename();
         file_put_contents($input, $content);
-        
+
         // setup of mailmime decoder
         $params = array('include_bodies' => false,
                         'decode_headers' => true,

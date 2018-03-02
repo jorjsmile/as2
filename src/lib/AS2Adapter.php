@@ -325,12 +325,17 @@ class AS2Adapter {
         file_put_contents('/tmp/decrypt', '---------------------------------------------------------------'."\n", FILE_APPEND);
         file_put_contents('/tmp/decrypt', print_r(file_get_contents($input), true)."\n", FILE_APPEND);*/
 
+
+
+
         try {
             $private_key = self::getPrivateFromPKCS12($this->partner_to->sec_pkcs12, $this->partner_to->sec_pkcs12_password);
             if (!$private_key)
                 throw new AS2Exception('Unable to extract private key from PKCS12 file. (' . $this->partner_to->sec_pkcs12 . ' - using:' . $this->partner_to->sec_pkcs12_password.')');
 
             $output = self::getTempFilename();
+
+            echo $input;
 
             $command = self::$ssl_openssl . ' smime '    . 
                                             ' -decrypt ' . 
@@ -354,6 +359,7 @@ class AS2Adapter {
             return $output;
         }
         catch(\Exception $e){
+
             throw $e;
         }
     }
@@ -499,8 +505,8 @@ class AS2Adapter {
      *
      */
     public static function _deleteTempFiles(){
-        foreach(self::$tmp_files as $file)
-            @unlink($file);
+//        foreach(self::$tmp_files as $file)
+//            @unlink($file);
     }
 
     /**

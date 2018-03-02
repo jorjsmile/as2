@@ -157,27 +157,27 @@ class Util {
      */
     public function _deleteAtShutdown()
     {
-        foreach (self::$files as $file => $val) {
-            /* Delete files */
-            if ($val && file_exists($file)) {
-                /* Should we securely delete the file by overwriting the data
-                   with a random string? */
-                if (isset(self::$secure[$file])) {
-                    $filesize = filesize($file);
-                    /* See http://www.cs.auckland.ac.nz/~pgut001/pubs/secure_del.html.
-                     * We save the random overwrites for efficiency reasons. */
-                    $patterns = array("\x55", "\xaa", "\x92\x49\x24", "\x49\x24\x92", "\x24\x92\x49", "\x00", "\x11", "\x22", "\x33", "\x44", "\x55", "\x66", "\x77", "\x88", "\x99", "\xaa", "\xbb", "\xcc", "\xdd", "\xee", "\xff", "\x92\x49\x24", "\x49\x24\x92", "\x24\x92\x49", "\x6d\xb6\xdb", "\xb6\xdb\x6d", "\xdb\x6d\xb6");
-                    $fp = fopen($file, 'r+');
-                    foreach ($patterns as $pattern) {
-                        $pattern = substr(str_repeat($pattern, floor($filesize / strlen($pattern)) + 1), 0, $filesize);
-                        fwrite($fp, $pattern);
-                        fseek($fp, 0);
-                    }
-                    fclose($fp);
-                }
-                @unlink($file);
-            }
-        }
+//        foreach (self::$files as $file => $val) {
+//            /* Delete files */
+//            if ($val && file_exists($file)) {
+//                /* Should we securely delete the file by overwriting the data
+//                   with a random string? */
+//                if (isset(self::$secure[$file])) {
+//                    $filesize = filesize($file);
+//                    /* See http://www.cs.auckland.ac.nz/~pgut001/pubs/secure_del.html.
+//                     * We save the random overwrites for efficiency reasons. */
+//                    $patterns = array("\x55", "\xaa", "\x92\x49\x24", "\x49\x24\x92", "\x24\x92\x49", "\x00", "\x11", "\x22", "\x33", "\x44", "\x55", "\x66", "\x77", "\x88", "\x99", "\xaa", "\xbb", "\xcc", "\xdd", "\xee", "\xff", "\x92\x49\x24", "\x49\x24\x92", "\x24\x92\x49", "\x6d\xb6\xdb", "\xb6\xdb\x6d", "\xdb\x6d\xb6");
+//                    $fp = fopen($file, 'r+');
+//                    foreach ($patterns as $pattern) {
+//                        $pattern = substr(str_repeat($pattern, floor($filesize / strlen($pattern)) + 1), 0, $filesize);
+//                        fwrite($fp, $pattern);
+//                        fseek($fp, 0);
+//                    }
+//                    fclose($fp);
+//                }
+//                @unlink($file);
+//            }
+//        }
     }
 
     /**
